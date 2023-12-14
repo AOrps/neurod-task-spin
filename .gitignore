@@ -21,3 +21,6 @@
 # Go workspace file
 go.work
 
+# Custom Executables
+spins
+neurod-task-spin
