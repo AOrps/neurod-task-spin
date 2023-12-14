@@ -1,5 +1,5 @@
-# Repo-Name
-- Description
+# neurod-task-spin
+- Spinny wheel for todo task completion
 
 ## :mag: Manual
 
