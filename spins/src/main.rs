@@ -1,30 +1,35 @@
-use std::{
-    io::{prelude::*,BufReader},
-    net::{TcpListener,TcpStream},
-};
+use tokio::net::{TcpListener, TcpStream};
+use tokio::io::{AsyncReadExt, AsyncWriteExt};
 
-fn main() {
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
-    let listener = TcpListener::bind("127.0.0.1:7100").unwrap();    
+    let listener = TcpListener::bind("127.0.0.1:7100").await?;    
 
-    for _stream in listener.incoming() {
+    loop {
+        let (mut socket, _) = listener.accept().await?;
 
-        let _stream = _stream.unwrap();
+        tokio::spawn(async move {
+            let mut buf = [0; 1024];
 
-        handle_conn(_stream);
-        println!("Connection established!");
+            loop {
+                let n = match socket.read(&mut buf).await {
+
+                    Ok(n) if n == 0 => return,
+                    Ok(n) => n,
+                    Err(e) => {
+                        eprintln!("failed to read from socket; err: {:?}",e);
+                        return;
+                    }
+                };
+
+                if let Err(e) = socket.write_all(&buf[0..n]).await {
+                    eprintln!("failed to write to socket; err: {:?}", e);
+                    return;
+                }
+            }
+        });
+
     }
 
-}
-
-fn handle_conn(mut stream: TcpStream) {
-    let buf_reader = BufReader::new(&mut stream);
-
-    let http_request: Vec<_> = buf_reader
-        .lines()
-        .map(|result| result.unwrap())
-        .take_while(|line| !line.is_empty())
-        .collect();
-
-    println!("Request: {:#?}", http_request);
 }
