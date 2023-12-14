@@ -14,3 +14,4 @@ clean:
 
 prune: clean
 	rm -f neurod-task-spin *~
+	find . -type f -name '*~' -exec rm -f {} \;
