@@ -2,6 +2,11 @@
 <div class="pure-u-3-5">
 <!-- https://classic.yarnpkg.com/en/package/spin-wheel --> 
 <div class="wheel-wrapper"></div>
+</div>
+<div class="pure-u-2-5">
+<p>yes</p>
+</div>
+
 <script>
     window.onload = () => {
       const props = {
@@ -23,5 +28,4 @@
       window.wheel = new spinWheel.Wheel(container, props);
     }
 </script>
-</div>
 {{end}}
