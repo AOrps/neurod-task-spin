@@ -1,3 +1,27 @@
 {{block "wheel" .}}
+<div class="pure-u-3-5">
+<!-- https://classic.yarnpkg.com/en/package/spin-wheel --> 
+<div class="wheel-wrapper"></div>
+<script>
+    window.onload = () => {
+      const props = {
+        items: [
+          {
+            label: 'one',
+          },
+          {
+            label: 'two',
+          },
+          {
+            label: 'three',
+          },
+        ],
+        itemBackgroundColors: ['#fff', '#eee', '#ddd']
 
+      };
+      const container = document.querySelector('.wheel-wrapper');
+      window.wheel = new spinWheel.Wheel(container, props);
+    }
+</script>
+</div>
 {{end}}

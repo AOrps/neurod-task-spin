@@ -1,5 +1,4 @@
 {{block "nav" .}}
-<div>
 <div class="pure-u-5-5">
   <div class="pure-menu pure-menu-horizontal navigate">
     <ul class="pure-menu-list">
@@ -8,4 +7,5 @@
       {{end}}
     </ul>
   </div>
+</div>
 {{end}}
