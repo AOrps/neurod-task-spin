@@ -4,12 +4,11 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
-	"html/template"
 	lib "github.com/AOrps/neurod-task-spin/lib"
 )
 
 const (
-	templatePath = "templates/*htmx"
+	templatePath = lib.TEMPLATEPATH
 )
 
 // (Global) port: initial port to serve content on
@@ -17,28 +16,14 @@ const (
 var port = 7100
 
 
-func rootHandle(w http.ResponseWriter, r *http.Request) {
-	tpl := template.Must(template.ParseGlob(templatePath))
-
-	page := lib.Page{
-		Nav: lib.Navbar(),
-	}
-
-	tpl.ExecuteTemplate(w, "main", page)
-}
-
-func dbHandle(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "db here plz")
-}
-
 func main() {
 
 	// Assets at static/
 	fs := http.FileServer(http.Dir("static/"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
-	http.HandleFunc("/",rootHandle)
-	http.HandleFunc("/db",dbHandle)
+	// Is the area where the routes are setup
+	lib.SetupRoutes()
 
 	// checks if port is available and valid
 	for (lib.CheckPort(port) == false) && (port < 65536) {

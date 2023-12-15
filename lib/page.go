@@ -15,6 +15,11 @@ func Navbar() []NavLink {
 			Name: "/",
 			Link: "/",
 		},
+		{
+			Name: "Settings",
+			Link: "/settings",
+		},
+
 	}
 }
 				
