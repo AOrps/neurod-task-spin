@@ -16,6 +16,7 @@
 <div class="pure-g">
   {{template "nav" .Nav}}
   <h1> hi </h1>
+  {{template "wheel" .}}
 </div>
 <body>
 </html>
