@@ -1,0 +1,11 @@
+{{block "nav" .}}
+<div>
+<div class="pure-u-5-5">
+  <div class="pure-menu pure-menu-horizontal navigate">
+    <ul class="pure-menu-list">
+      {{range .}}
+      <li class="pure-menu-item"><a href="{{.Link}}" class="pure-menu-link">{{.Name}}</a></li>
+      {{end}}
+    </ul>
+  </div>
+{{end}}
