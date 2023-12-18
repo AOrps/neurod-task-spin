@@ -18,9 +18,9 @@ var port = 7100
 
 func main() {
 
-	// Assets at static/
-	fs := http.FileServer(http.Dir("static/"))
-	http.Handle("/static/", http.StripPrefix("/static/", fs))
+	// Assets at assets/
+	fs := http.FileServer(http.Dir("assets/"))
+	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
 
 	// Is the area where the routes are setup
 	lib.SetupRoutes()
