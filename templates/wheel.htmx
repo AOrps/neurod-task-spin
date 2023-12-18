@@ -6,18 +6,12 @@
     <div class="wheel-wrapper"></div>
     <p class="wheel-value">yo</p>
 </div>
-<div class="pure-u-2-5" hx-ws="connect:ws:localhost:7100/ws">
+<div class="pure-u-2-5">
 
-     <form hx-ws="send">
-           <input id="input" type="text" />
-           <button>send</button>
-           <pre id="output"></pre>
-     </form>
-
-<!-- <input id="input" type="text" /> -->
-<!-- <button onclick="send()">Send</button> -->
-<!-- <pre id="output"></pre> -->
-<!-- <p></p> -->
+<input id="input" type="text" /> 
+<button id="daButton">Send</button> 
+<pre id="output"></pre> 
+<p></p> 
 
 </div>
 {{template "wheel-setup" .}}
