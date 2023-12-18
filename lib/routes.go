@@ -9,38 +9,38 @@ import (
 	"fmt"
 	"net/http"
 	"html/template"
-	"strings"
 	
 	"github.com/gorilla/websocket"
 )
 
 var upgrader = websocket.Upgrader{}
-var todoList []string
+// var todoList []string
 
-func getCmd(input string) string {
-    inputArr := strings.Split(input, " ")
-    return inputArr[0]
-}
+// func getCmd(input string) string {
+//     inputArr := strings.Split(input, " ")
+//     return inputArr[0]
+// }
 
-func getMessage(input string) string {
-    inputArr := strings.Split(input, " ")
-    var result string
-    for i := 1; i < len(inputArr); i++ {
-        result += inputArr[i]
-    }
-    return result
-}
+// func getMessage(input string) string {
+//     inputArr := strings.Split(input, " ")
+//     var result string
+//     for i := 1; i < len(inputArr); i++ {
+//         result += inputArr[i]
+//     }
+//     return result
+// }
 
-func updateTodoList(input string) {
-    tmpList := todoList
-    todoList = []string{}
-    for _, val := range tmpList {
-        if val == input {
-            continue
-        }
-        todoList = append(todoList, val)
-    }
-}
+// func updateTodoList(input string) {
+//     tmpList := todoList
+//     todoList = []string{}
+//     for _, val := range tmpList {
+//         if val == input {
+//             continue
+//         }
+//         todoList = append(todoList, val)
+//     }
+// }
+
 
 
 func rootHandle(w http.ResponseWriter, r *http.Request) {
@@ -73,37 +73,41 @@ func wsHandle(w http.ResponseWriter, r *http.Request) {
 		}
 
 		fmt.Printf("try: <%s> \n", string(message))
+		fmt.Printf("mt: <%d>\n", mt)
 
-		input := string(message)
-		cmd := getCmd(input)
-		msg := getMessage(input)
-
-		if cmd == "add" {
-                todoList = append(todoList, msg)
-            } else if cmd == "done" {
-                updateTodoList(msg)
-            }
-            output := "Current Todos: \n"
-            for _, todo := range todoList {
-                output += "\n - " + todo + "\n"
-            }
-            output += "\n----------------------------------------"
-            message = []byte(output)
-            err = conn.WriteMessage(mt, message)
-            if err != nil {
-                fmt.Println("write failed:", err)
-                break
-            }
+		err = conn.WriteMessage(mt, message)
+		if err != nil {
+			fmt.Println(err)
+		}
+		
+		// input := string(message)
+		// cmd := getCmd(input)
+		// msg := getMessage(input)
+		
+		// if cmd == "add" {
+        //         todoList = append(todoList, msg)
+        //     } else if cmd == "done" {
+        //         updateTodoList(msg)
+        //     }
+        //     output := "Current Todos: \n"
+        //     for _, todo := range todoList {
+        //         output += "\n - " + todo + "\n"
+        //     }
+        //     output += "\n----------------------------------------"
+        //     message = []byte(output)
+        //     err = conn.WriteMessage(mt, message)
+        //     if err != nil {
+        //         fmt.Println("write failed:", err)
+        //         break
+        //     }
 	
 	}
 }
 
 func wsPage(w http.ResponseWriter, r *http.Request) {
-	// tpl := template.Must(template.ParseGlob("templates/*html"))
-	// tpl.ExecuteTemplate(w, "settings", nil)
-	http.ServeFile(w, r, "templates/ws-try.html")
-
-
+	tpl := template.Must(template.ParseGlob("templates/*html"))
+	tpl.ExecuteTemplate(w, "ws", nil)
+	// http.ServeFile(w, r, "templates/ws-try.html")
 }
 
 func settingsHandle(w http.ResponseWriter, r *http.Request) {

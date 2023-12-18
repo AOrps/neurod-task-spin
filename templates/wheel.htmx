@@ -7,6 +7,9 @@
     <p class="wheel-value">yo</p>
 </div>
 <div class="pure-u-2-5">
+<input id="input" type="text" />
+<button onclick="send()">Send</button>
+<pre id="output"></pre>
 <p></p>
 </div>
 {{template "wheel-setup" .}}
