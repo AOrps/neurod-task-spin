@@ -1,3 +1,38 @@
+window.onload = () => {
+  const props = {
+    items: [
+      {
+        label: 'one',
+        backgroundColor: '#fff',
+      },
+      {
+        label: 'two',
+        backgroundColor: '#eee',
+      },
+      {
+        label: 'three',
+        backgroundColor: '#ddd',
+      },
+      {
+        label: 'four',
+        backgroundColor: '#ccc',
+      },
+      {
+        label: 'five',
+        backgroundColor: '#bbb',
+      },          
+    ]};
+  const container = document.querySelector('.wheel-wrapper');
+  const wheel = new spinWheel.Wheel(container, props);
+
+  wheel.onCurrentIndexChange = (e) => {
+      const paragraph = document.querySelector('.wheel-value');
+      paragraph.textContent = props["items"][e.currentIndex].label;
+  }
+
+  window.wheel = wheel;
+}
+
 function theButton(socket) {
     let button = document.getElementById('daButton');
 
