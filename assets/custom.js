@@ -10,19 +10,26 @@ function theButton(socket) {
 
     button.addEventListener('click', function () {
 
+       
         // let input = document.querySelector('.input');
         // var input = document.getElementById('input');
-        let output = document.querySelector('.output');
+        // var output = document.querySelector('.output');
 
         var input = document.getElementById('input');
+
         
-        console.log("yo: ", input.value);
+        // console.log("yo: ", input.value);
 
         socket.onmessage = function (e) {
-            console.log(e.data);
-            input = e.data;
+             // input and e.data are the same
+            console.log("yes:", e.data);
+            const output = document.getElementById('output');
+            // input = e.data;
             // output.innerHTML += "\nServer: " + e.data + "\n";
+            output.textContent = input.value;
         };
+
+        
         
         console.log("yo2: ", input.value);
 
