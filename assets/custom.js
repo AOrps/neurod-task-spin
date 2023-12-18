@@ -1,6 +1,7 @@
-var input = document.getElementById("input");
-var output = document.getElementById("output");
+// var input = document.querySelector('.input');
+var output = document.querySelector('.output');
 var socket = new WebSocket("ws://localhost:7100/ws");
+
 
 socket.onopen = function () {
     console.log("Status: Connected");
@@ -13,6 +14,13 @@ socket.onmessage = function (e) {
 };
 
 function send() {
+    let input = document.querySelector('.input');
+    console.log("yes");
+    console.log(input);
     socket.send(input.value);
     // input.value = "";
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("ononon")
+});
