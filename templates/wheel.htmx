@@ -1,3 +1,5 @@
+{{/* Type: Component */}}
+{{/* Description: How the wheel visual and input works */}}
 {{block "wheel" .}}
 <div class="pure-u-3-5">
 <!-- https://classic.yarnpkg.com/en/package/spin-wheel --> 
@@ -14,37 +16,37 @@
         items: [
           {
             label: 'one',
+            backgroundColor: '#fff',
           },
           {
             label: 'two',
+            backgroundColor: '#eee',
           },
           {
             label: 'three',
+            backgroundColor: '#ddd',
           },
-        ],
-        itemBackgroundColors: ['#fff', '#eee', '#ddd']
-      };
+          {
+            label: 'four',
+            backgroundColor: '#ccc',
+          },
+          {
+            label: 'five',
+            backgroundColor: '#bbb',
+          },
+          
+        ]};
       const container = document.querySelector('.wheel-wrapper');
       const wheel = new spinWheel.Wheel(container, props);
 
-      console.log(props["items"])
-
       wheel.onCurrentIndexChange = (e) => {
-          // console.log(props["items"][e.currentIndex]);
-
-          const landedLabel = props["items"][e.currentIndex].label;
-          console.log(landedLabel);
           const paragraph = document.querySelector('.wheel-value');
-          paragraph.textContent = landedLabel;
-
-          // const landedLabel = e.label;
-          // const paragraph = document.querySelector('.wheel-value');
-          // paragraph.textContent = landedLabel;
+          paragraph.textContent = props["items"][e.currentIndex].label;
       }
-
 
       window.wheel = wheel;
     }
 
 </script>
 {{end}}
+

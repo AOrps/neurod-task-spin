@@ -1,3 +1,5 @@
+{{/* Type: Layout */}}
+{{/* Description: Settings Page */}}
 {{block "settings" .}}
 <html>
 {{template "head" .}}

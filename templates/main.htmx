@@ -1,3 +1,5 @@
+{{/* Type: Layout */}}
+{{/* Description: Main (Root) Page */}}
 {{block "main" .}}
 <!DOCTYPE html>
 <html>
