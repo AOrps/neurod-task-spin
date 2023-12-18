@@ -104,12 +104,6 @@ func wsHandle(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func wsPage(w http.ResponseWriter, r *http.Request) {
-	tpl := template.Must(template.ParseGlob("templates/*html"))
-	tpl.ExecuteTemplate(w, "ws", nil)
-	// http.ServeFile(w, r, "templates/ws-try.html")
-}
-
 func settingsHandle(w http.ResponseWriter, r *http.Request) {
 	tpl := template.Must(template.ParseGlob(TEMPLATEPATH))
 	page := Page{
@@ -122,7 +116,6 @@ func settingsHandle(w http.ResponseWriter, r *http.Request) {
 func SetupRoutes() {
 	http.HandleFunc("/",rootHandle)
 	http.HandleFunc("/db",dbHandle)
-	http.HandleFunc("/test",wsPage)
 	http.HandleFunc("/ws",wsHandle)
 	http.HandleFunc("/settings",settingsHandle)
 }
