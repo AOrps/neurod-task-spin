@@ -1,0 +1,14 @@
+{{/* Type: Layout */}}
+{{/* Description: Main (Root) Page */}}
+{{block "main" .}}
+<!DOCTYPE html>
+<html>
+{{template "head" .}}
+<body>
+<div class="pure-g">
+  {{template "nav" .Nav}}
+  {{template "wheel" .}}
+</div>
+<body>
+</html>
+{{end}}

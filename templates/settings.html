@@ -1,0 +1,22 @@
+{{/* Type: Layout */}}
+{{/* Description: Settings Page */}}
+{{block "settings" .}}
+<html>
+{{template "head" .}}
+<body>
+	<div class="pure-g">
+    {{template "nav" .Nav}}
+    <div class="pure-u-5-5">
+	<label for="opt1" class="pure-radio">
+        <input type="radio" id="opt1" name="optionsRadios" value="option1" checked="" /> HTMX Poll
+    </label>
+    </div>
+    <div class="pure-u-5-5">    
+    <label for="opt2" class="pure-radio">
+        <input type="radio" id="opt2" name="optionsRadios" value="option2" /> Websockets
+    </label>
+    </div>
+	</div>
+</body>
+</html>	
+{{end}}
