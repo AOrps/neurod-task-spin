@@ -9,7 +9,9 @@
 <div class="pure-u-2-5">
 <p></p>
 </div>
-
+{{template "wheel-setup" .}}
+{{end}}
+{{block "wheel-setup" .}}
 <script>
     window.onload = () => {
       const props = {
@@ -33,8 +35,7 @@
           {
             label: 'five',
             backgroundColor: '#bbb',
-          },
-          
+          },          
         ]};
       const container = document.querySelector('.wheel-wrapper');
       const wheel = new spinWheel.Wheel(container, props);
@@ -46,7 +47,5 @@
 
       window.wheel = wheel;
     }
-
 </script>
 {{end}}
-
