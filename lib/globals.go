@@ -7,5 +7,5 @@ package lib
 */
 
 const (
-	TEMPLATEPATH = "templates/*htmx"
+	TEMPLATEPATH = "templates/*html"
 )
