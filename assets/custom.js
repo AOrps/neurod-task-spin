@@ -1,6 +1,5 @@
 window.onload = () => {
-  const props = {
-    items: []};
+  const props = {items: [{label:"yes", backgroundColor: '#fff'},{label:"no", backgroundColor:'#eee'}]};
   const container = document.querySelector('.wheel-wrapper');
   const wheel = new spinWheel.Wheel(container, props);
 
@@ -24,17 +23,27 @@ function theButton(socket) {
             const output = document.getElementById('output');
             // output.textContent = input.value;
             output.textContent = e.data;
-            
-            const props = {items: e.data};
-            const container = document.querySelector('.wheel-wrapper');
-            window.wheel = new spinWheel.Wheel(container, props);
-            // const container = document.querySelector('.wheel-wrapper');
-            // const wheel = new spinWheel.Wheel(container, props);
 
-            wheel.onCurrentIndexChange = (e) => {
-                const paragraph = document.querySelector('.wheel-value');
-                paragraph.textContent = props["items"][e.currentIndex].label;
-            }
+            // window.wheel.items = e.data;
+            // window.wheel.items[0]._backgroundColor = '#ddd';            
+            // window.onmessage = () => {
+
+            const tryWheel = new spinWheel.Wheel(document.querySelector('.wheel-wrapper'), {items:[{label:"sey"},{label:"on"}]});
+
+            window.wheel = tryWheel;
+            
+            //     const props = {items: e.data};
+            //     const container = document.querySelector('.wheel-wrapper');
+            //     const wheel = new spinWheel.Wheel(container, props);
+            //     // const container = document.querySelector('.wheel-wrapper');
+            //     // const wheel = new spinWheel.Wheel(container, props);
+
+            //     wheel.onCurrentIndexChange = (e) => {
+            //         const paragraph = document.querySelector('.wheel-value');
+            //         paragraph.textContent = props["items"][e.currentIndex].label;
+            //     }
+            //     window.wheel = wheel;
+            // }
 
         };
         socket.send(input.value);        
