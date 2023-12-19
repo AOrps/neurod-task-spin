@@ -1,28 +1,6 @@
-
 window.onload = () => {
   const props = {
-    items: [
-      {
-        label: 'one',
-        backgroundColor: '#fff',
-      },
-      {
-        label: 'two',
-        backgroundColor: '#eee',
-      },
-      {
-        label: 'three',
-        backgroundColor: '#ddd',
-      },
-      {
-        label: 'four',
-        backgroundColor: '#ccc',
-      },
-      {
-        label: 'five',
-        backgroundColor: '#bbb',
-      },          
-    ]};
+    items: []};
   const container = document.querySelector('.wheel-wrapper');
   const wheel = new spinWheel.Wheel(container, props);
 
@@ -41,8 +19,23 @@ function theButton(socket) {
         var input = document.getElementById('input');
 
         socket.onmessage = function (e) {
+            // console.log(e);
+            console.log(e.data);
             const output = document.getElementById('output');
-            output.textContent = input.value;
+            // output.textContent = input.value;
+            output.textContent = e.data;
+            
+            const props = {items: e.data};
+            const container = document.querySelector('.wheel-wrapper');
+            window.wheel = new spinWheel.Wheel(container, props);
+            // const container = document.querySelector('.wheel-wrapper');
+            // const wheel = new spinWheel.Wheel(container, props);
+
+            wheel.onCurrentIndexChange = (e) => {
+                const paragraph = document.querySelector('.wheel-value');
+                paragraph.textContent = props["items"][e.currentIndex].label;
+            }
+
         };
         socket.send(input.value);        
     });
