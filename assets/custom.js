@@ -13,37 +13,39 @@ window.onload = () => {
 
 function theButton(socket) {
     let button = document.getElementById('daButton');
+    let tryWheel;
+    
 
+    
     button.addEventListener('click', function () {
         var input = document.getElementById('input');
 
+
         socket.onmessage = function (e) {
-            // console.log(e);
             console.log(e.data);
             const output = document.getElementById('output');
-            // output.textContent = input.value;
+
             output.textContent = e.data;
 
-            // window.wheel.items = e.data;
-            // window.wheel.items[0]._backgroundColor = '#ddd';            
-            // window.onmessage = () => {
 
-            const tryWheel = new spinWheel.Wheel(document.querySelector('.wheel-wrapper'), {items:[{label:"sey"},{label:"on"}]});
+            const newData = JSON.parse(e.data);
+            console.log("newData", newData)
 
-            window.wheel = tryWheel;
+            // window.wheel.
             
-            //     const props = {items: e.data};
-            //     const container = document.querySelector('.wheel-wrapper');
-            //     const wheel = new spinWheel.Wheel(container, props);
-            //     // const container = document.querySelector('.wheel-wrapper');
-            //     // const wheel = new spinWheel.Wheel(container, props);
+            var updateWheel = new spinWheel.Wheel(document.querySelector('.wheel-wrapper'), { item: newData.items });
+            // tryWheel = new spinWheel.Wheel(document.querySelector('.wheel-wrapper'), {items: [{label: "sey"}, {label: "on"}]});
+            // window.wheel = tryWheel;
+            wheel.innerHTML = '';
 
-            //     wheel.onCurrentIndexChange = (e) => {
-            //         const paragraph = document.querySelector('.wheel-value');
-            //         paragraph.textContent = props["items"][e.currentIndex].label;
-            //     }
-            //     window.wheel = wheel;
-            // }
+              updateWheel.onCurrentIndexChange = (e) => {
+                  const paragraph = document.querySelector('.wheel-value');
+                  paragraph.textContent = props["items"][e.currentIndex].label;
+              }
+
+
+                console.log("updated wheel:", updateWheel);
+                window.wheel = updateWheel;
 
         };
         socket.send(input.value);        
