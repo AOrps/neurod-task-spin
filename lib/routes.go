@@ -7,9 +7,9 @@ package lib
 
 import (
 	"fmt"
-	"net/http"
 	"html/template"
-	
+	"net/http"
+
 	"github.com/gorilla/websocket"
 )
 
@@ -44,7 +44,9 @@ func wsHandle(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 
-		fmt.Printf("try: <%s> \n", string(message))
+		conMessage := string(message)
+		fmt.Printf("try: <%s> \n", conMessage)
+		ParseStringMessage(conMessage)
 		fmt.Printf("mt: <%d>\n", mt)
 
 		err = conn.WriteMessage(mt, message)
