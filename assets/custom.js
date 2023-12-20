@@ -1,50 +1,28 @@
+// wheel initialization
 window.onload = () => {
-    const props = {items: [{label:"yes", backgroundColor: '#fff'},{label:"no", backgroundColor:'#eee'}]};
-    // const props = {items: []};    
+    const props = {items: []};    
     const container = document.querySelector('.wheel-wrapper');
     const wheel = new spinWheel.Wheel(container, props);
-
-    console.log("wheel",wheel, typeof(wheel));
-    console.log("props",props, typeof(props));
-
     wheel.onCurrentIndexChange = (e) => {
         const paragraph = document.querySelector('.wheel-value');
         console.log("asdfasdf")
         paragraph.textContent = props["items"][e.currentIndex].label;
     }
-
     window.wheel = wheel;
 }
 
+// theButton: send info via the socket
 function theButton(socket) {
     let button = document.getElementById('daButton');
-    
+
+    // when the button is clicked, send content to the golang websocket
     button.addEventListener('click', function () {
         var input = document.getElementById('input');
         socket.send(input.value);        
     });
-
-     // socket.onmessage = function (e) {
-     //        const newData = JSON.parse(e.data)
-     //        const output = document.getElementById('output');
-
-     //        output.textContent = newData;
-     //        console.log("newData", newData)
-
-     //        var updateWheel = new spinWheel.Wheel(document.querySelector('.wheel-wrapper'), { item: newData.items });
-     //        console.log("target",document.querySelector('.wheel-wrapper'))
-     //            // ._items[0]._backgroundColor: "#dedede";
-            
-
-     //        console.log("updated wheel:", updateWheel);
-     //        wheel = updateWheel;
-
-     //    };
-
 }
 
-
-
+// then DOMContentLoaded, connect to websocket and do magic
 document.addEventListener('DOMContentLoaded', function() {
     let socket = new WebSocket("ws://localhost:7100/ws");
 
@@ -56,20 +34,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     socket.onmessage = function (e) {
         var nData = JSON.parse(e.data);
-        // console.log("socket onmessage (e.data):", nData, typeof(nData))
         const output = document.getElementById('output');
         output.textContent = nData;
 
         const nContainer = document.querySelector('.wheel-wrapper');
-        // nContainer.removeChild();
-        var oldCanvas = nContainer.querySelector('canvas');
-        console.log(oldCanvas);
-        oldCanvas.remove();
-        
-        var nProps = {items: nData};
 
-        console.log("nProps", nProps, typeof(nProps))
+        var oldCanvas = nContainer.querySelector('canvas');
+        // removes old wheel
+        oldCanvas.remove(); // NEEDED, otherwise the new wheel goes nuts
         
+        var nProps = {items: nData};        
         var uWheel = new spinWheel.Wheel(nContainer,nProps);
 
         uWheel.onCurrentIndexChange = (event) => {
@@ -77,8 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const word = nProps["items"][event.currentIndex].label;
             nParagraph.textContent = word;
         }
-        
         window.wheel = uWheel;
     }
-    
 });
