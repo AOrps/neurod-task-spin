@@ -1,14 +1,29 @@
 {{/* Type: Component */}}
 {{/* Description: How the wheel visual and input works */}}
 {{block "wheel" .}}
-<div class="pure-u-3-5">
+<div class="pure-u-16-24">
 <!-- https://classic.yarnpkg.com/en/package/spin-wheel --> 
     <div class="wheel-wrapper"></div>
     <p class="wheel-value">yo</p>
 </div>
-<div class="pure-u-2-5">
-
-<input id="input" type="text" /> 
+<div class="pure-u-8-24">
+  <!-- <input id="input" type="text" />  -->
+<div class="todo-tut pure-u-21-24">
+  <h2>TODO List</h2>
+  <p>Be sure to write each new todo on a new line</p>
+  <p>To add: '+' to the start of the line</p>
+  <p>To remove: '-' to the start of the line</p>
+  <pre>
+    + yes
+    + do
+    - asf
+  </pre>
+  
+</div>
+<div class="pure-u-3-24">
+  
+</div>
+<textarea id="input" class="pure-input-1-2" placeholder="enter tasks"></textarea>
 <button id="daButton">Send</button> 
 <pre id="output"></pre> 
 <p></p> 

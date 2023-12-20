@@ -7,9 +7,10 @@ package lib
 
 import (
 	"fmt"
-	"net/http"
 	"html/template"
-	
+	"net/http"
+	"encoding/json"
+
 	"github.com/gorilla/websocket"
 )
 
@@ -44,10 +45,17 @@ func wsHandle(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 
-		fmt.Printf("try: <%s> \n", string(message))
-		fmt.Printf("mt: <%d>\n", mt)
+		conMessage := string(message)
+		// fmt.Printf("try: <%s> \n", conMessage)
+		wheelPie := ParseStringMessage(conMessage)
+		// fmt.Printf("mt: <%d>\n", mt)
 
-		err = conn.WriteMessage(mt, message)
+		b, err := json.Marshal(wheelPie)
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		err = conn.WriteMessage(mt, b)
 		if err != nil {
 			fmt.Println(err)
 		}
