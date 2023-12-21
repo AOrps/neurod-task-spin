@@ -1,0 +1,23 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+    name: spins
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: spins
+    template:
+        metadata:
+            labels:
+                app: spins
+        spec:
+            containers:
+                - name: spins
+                  image: spins
+                  imagePullPolicy: Never
+                  resources:
+                      requests:
+                          cpu: "100m"
+
