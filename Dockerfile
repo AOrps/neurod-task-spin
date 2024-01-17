@@ -3,6 +3,7 @@ FROM alpine:latest
 LABEL name="spins"
 LABEL maintainer="AOrps"
 LABEL vendor="AOrps"
+LABEL version="0.0.1"
 
 WORKDIR /usr/src/app
 
