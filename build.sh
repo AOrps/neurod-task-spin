@@ -1,7 +1,8 @@
 #!/bin/bash
-set -x
+# set -x --> For debug
 
 OPT_FORCE=
+OPT_LATEST=
 
 # usage: shows how to use this script
 function usage {
@@ -13,6 +14,9 @@ cat<<EOF
 
        -f : Force
        	  Force build of the container
+
+       -l : Latest Tag
+       	  Build a latest tag
 
 EOF
 exit 0
@@ -30,10 +34,12 @@ function main {
 	docker build -t spins:$version . -f Dockerfile
 	[ $? -eq 1 ] && echo "err: could not build docker container"
     fi
-    
-    docker tag spins:$version spins:latest
-    [ $? -eq 1 ] && echo "err: unsuccessful in tagging container"
 
+    if [ $OPT_LATEST ]; then
+	docker tag spins:$version spins:latest
+	[ $? -eq 1 ] && echo "err: unsuccessful in tagging container"
+    fi
+	
 }
 
 while getopts 'hf' opt; do
@@ -42,6 +48,8 @@ while getopts 'hf' opt; do
        	h) usage;;
 	# f) Force
 	f) OPT_FORCE=1;;
+	# l) latest
+	l) OPT_LATEST=1;;
     esac
 done
 
