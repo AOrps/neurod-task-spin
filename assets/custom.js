@@ -24,7 +24,7 @@ function theButton(socket) {
 
 // then DOMContentLoaded, connect to websocket and do magic
 document.addEventListener('DOMContentLoaded', function() {
-    let socket = new WebSocket("ws://localhost:7100/ws");
+    let socket = new WebSocket("wss://localhost:7100/ws");
 
     socket.onopen = function () {
         console.log("Websocket Javascript Status: Connected");
