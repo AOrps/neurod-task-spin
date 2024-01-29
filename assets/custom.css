@@ -5,3 +5,16 @@
 .todo-tut {
     padding-top: 0rem;
 }
+
+.center {
+    text-align: center;
+}
+
+.arrow-down {
+    display: inline-block;
+    text-align: center;
+    border-left: 2rem solid transparent;
+    border-right: 2rem solid transparent;
+    border-top: 7rem solid #f00;
+    
+}
