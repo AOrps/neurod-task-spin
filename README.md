@@ -1,13 +1,13 @@
 # neurod-task-spin
 - Spinny wheel for todo task completion
 
-## :mag: Manual
-
-```txt
-
-```
-
 ## :hammer: How to Build
+
+### Go Direct
+
+
+### Kubernetes
+
 
 ## :alembic: Usage
 
