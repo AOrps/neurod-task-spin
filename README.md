@@ -15,6 +15,10 @@
 
 ## :framed_picture: Screenshots / Images
 
+### Screenshot Demo 
+![site with demo pic](./imgs/sshot0.png)
+
+
 ## :card_file_box: Directory Explanation
 
 ```s
