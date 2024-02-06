@@ -4,12 +4,25 @@
 ## :hammer: How to Build
 
 ### Go Direct
+```make 
+# Using `make`
+make
 
+# Without `make`
+go build
+
+```
+
+- **Note**: Building with or without `make` leads to a differently named binary:
+  - with `make`: `spins`
+  - without `make`: `neurod-task-spin`
+  - they both do the same thing, just a name change
 
 ### Kubernetes
 
 
 ## :alembic: Usage
+
 
 ---
 
