@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     socket.onmessage = function (e) {
         var nData = JSON.parse(e.data);
         const output = document.getElementById('output');
-        output.textContent = nData;
+        // output.textContent = nData;
 
         const nContainer = document.querySelector('.wheel-wrapper');
 
