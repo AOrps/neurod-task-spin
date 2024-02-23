@@ -33,12 +33,15 @@ go build
 
 
 ## :card_file_box: Directory Explanation
+<!-- tree -d --noreport -->
 
 ```s
-# Use tree to get a nicer graphical implementation
 .
-├───dir1        ; explanation of dir1
-└───dir2        ; ---
+├── assets            ; css / js for website
+├── imgs              ; images to show off repo more
+├── lib               ; go logic
+└── templates         ; how the html is rendered
+
 ```
 
 ## :warning: Disclaimer
