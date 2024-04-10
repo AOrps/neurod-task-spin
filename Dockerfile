@@ -8,13 +8,13 @@ LABEL version="0.0.1"
 WORKDIR /usr/src/app
 
 RUN apk update && apk upgrade
-RUN apk add make
+RUN apk add make go
 
-# Install go1.21.5 & clear artifacts
-RUN wget https://go.dev/dl/go1.21.5.linux-amd64.tar.gz
-RUN  rm -rf /usr/local/go && tar -C /usr/local -xzf go1.21.5.linux-amd64.tar.gz
-ENV PATH $PATH:/usr/local/go/bin
-RUN rm go1.21.5.linux-amd64.tar.gz
+# # Install go1.21.5 & clear artifacts
+# RUN wget https://go.dev/dl/go1.21.5.linux-amd64.tar.gz
+# RUN  rm -rf /usr/local/go && tar -C /usr/local -xzf go1.21.5.linux-amd64.tar.gz
+# ENV PATH $PATH:/usr/local/go/bin
+# RUN rm go1.21.5.linux-amd64.tar.gz
 
 # Add Project Files 
 COPY go.mod go.sum .
