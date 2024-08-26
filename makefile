@@ -1,6 +1,7 @@
 SHELL = /bin/sh
 EXE = "spins"
 VERSION = $(shell cat Dockerfile | awk '/^LABEL version/{gsub("\"",""); print }' | cut -d'=' -f2)
+DOCKERNAME = neurod-task-spin
 
 all: compile
 
@@ -19,8 +20,11 @@ prune: clean
 
 # builds a container image
 container:
-	docker build -t neurod-task-spin:$(VERSION) -f Dockerfile .
+	docker build -t $(DOCKERNAME):$(VERSION) -t $(DOCKERNAME):latest -f Dockerfile .
 
 # prunes container image generated from
 container-prune:
-	docker rmi neurod-task-spin
+	docker rmi $(DOCKERNAME)
+
+container-run: container
+	docker run --network=host --rm -it $(DOCKERNAME)
