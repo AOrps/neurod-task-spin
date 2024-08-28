@@ -1,27 +1,47 @@
 # neurod-task-spin
 - Spinny wheel for todo task completion
 
-## :mag: Manual
+## :hammer: How to Build
 
-```txt
+### Go Direct
+```make 
+# Using `make`
+make
+
+# Without `make`
+go build
 
 ```
 
-## :hammer: How to Build
+- **Note**: Building with or without `make` leads to a differently named binary:
+  - with `make`: `spins`
+  - without `make`: `neurod-task-spin`
+  - they both do the same thing, just a name change
+
+### Kubernetes
+
 
 ## :alembic: Usage
+
 
 ---
 
 ## :framed_picture: Screenshots / Images
 
+### Screenshot Demo 
+![site with demo pic](./imgs/sshot0.png)
+
+
 ## :card_file_box: Directory Explanation
+<!-- tree -d --noreport -->
 
 ```s
-# Use tree to get a nicer graphical implementation
 .
-├───dir1        ; explanation of dir1
-└───dir2        ; ---
+├── assets            ; css / js for website
+├── imgs              ; images to show off repo more
+├── lib               ; go logic
+└── templates         ; how the html is rendered
+
 ```
 
 ## :warning: Disclaimer

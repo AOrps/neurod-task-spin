@@ -3,11 +3,11 @@
 <!--TEMPLATE_DOC_START-->
 | Name | Type | Template | Description 
 | :---- | :---- | :---- |:------
-| [head.htmx](head.htmx) | Component | `head` | Imports within the <head> tag
-| [main.htmx](main.htmx) | Layout | `main` | Main (Root) Page
-| [nav.htmx](nav.htmx) | Component | `nav` | How the Navbar Works
-| [settings.htmx](settings.htmx) | Layout | `settings` | Settings Page
-| [wheel.htmx](wheel.htmx) | Component | `wheel` | How the wheel visual and input works
+| [head.html](head.html) | Component | `head` | Imports within the <head> tag
+| [main.html](main.html) | Layout | `main` | Main (Root) Page
+| [nav.html](nav.html) | Component | `nav` | How the Navbar Works
+| [settings.html](settings.html) | Layout | `settings` | Settings Page
+| [wheel.html](wheel.html) | Component | `wheel` | How the wheel visual and input works
 <!--TEMPLATE_DOC_END--> 
 
 - Documentation assist: 
